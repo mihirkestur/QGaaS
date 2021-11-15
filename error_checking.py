@@ -44,7 +44,5 @@ for audio_path in glob.glob(os.path.join(path_to_dataset, '*.wav')):
                     print(gt_text,"\n",transcript)
                     print("Estimated errors:\nWords predicted perfectly : {}\nError rate : {}\nWER : {}\n".format(est2,1-est1,wer_error))
             f.close()
-    if(total_samples == 10):
-        break
 print("Total error rate is (wer)",(total_error_wer/total_samples)*100)
 print("Total error rate is (cmp)",(total_error_cmp/total_samples)*100)
