@@ -1,4 +1,3 @@
-from PIL import Image
 import pytesseract
 import cv2
 from difflib import SequenceMatcher
@@ -6,6 +5,7 @@ import re
 
 def similar(a, b):
     return SequenceMatcher(None, a, b).ratio()
+
 
 def get_text_from_vid(path):
     print("Extracting text from video....")
@@ -23,7 +23,7 @@ def get_text_from_vid(path):
     while(True):
         ret, frame = video.read()
         frame_num += 1
-        if(frame_num%10!=0):
+        if(frame_num%100!=0):
             pass
         elif (ret):
             remove_newline = " ".join(pytesseract.image_to_string(frame).split("\n"))
