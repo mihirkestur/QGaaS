@@ -1,2 +1,6 @@
-# input is whole text (all contexts)
-# output: keywors and its importance
+"""
+input:
+    list of contexts
+output:
+    list of contexts ranked according to keywords
+"""
