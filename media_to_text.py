@@ -5,11 +5,11 @@ from pydub import AudioSegment
 from pydub.silence import split_on_silence
 import moviepy.editor as mp
 from pydub.utils import make_chunks
-
 """
 input: path to Audio/Video file
 output: Transcript (text)
 """
+
 def obtain_transcript(path):
     print("Converting speech to text....")
     
@@ -35,7 +35,21 @@ def obtain_transcript(path):
     Splitting the large audio file into chunks and apply speech recognition on each of these chunks
     """
     #chunks = make_chunks(sound, 10000)
+    """
+    input: video
     
+    sr = SpeechRecognition.Recognizer()
+    audio = extract audio from video using moviepy
+    chunks = split audio based on silence
+    texts = []
+    for chunk in chunks:
+        try:
+            speech_to_text = sr.recognize_google(chunk)
+        except exception as error:
+            raise some error
+        else:
+            texts.append(speech_to_text)
+    """
     chunks = split_on_silence(sound,
         # experiment with this value for your target audio file
         min_silence_len = 1000,
@@ -63,7 +77,7 @@ def obtain_transcript(path):
             except sr.UnknownValueError as e:
                 print("Error with file:", str(e))
             else:
-                text = f"{text.capitalize()}. "
+                #text = f"{text.capitalize()}. "
                 if(DEBUG):
                     print(chunk_filename, ":", text)
                 whole_text.append(text)

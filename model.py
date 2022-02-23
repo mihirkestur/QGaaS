@@ -1,10 +1,16 @@
 import os
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 from transformers import T5ForConditionalGeneration, T5TokenizerFast
+import streamlit as st
 
-t5_model = T5ForConditionalGeneration.from_pretrained("ThomasSimonini/t5-end2end-question-generation")
+#@st.cache(allow_output_mutation=True, show_spinner=False, suppress_st_warning=True)
+def init_model():
+    global t5_model
+    global tokenizer
+    t5_model = T5ForConditionalGeneration.from_pretrained("ThomasSimonini/t5-end2end-question-generation")
+    tokenizer = T5TokenizerFast.from_pretrained("t5-large")
 
-tokenizer = T5TokenizerFast.from_pretrained("t5-large")
+init_model()
 
 def get_questions(input_string, **generator_args):
     generator_args = {
